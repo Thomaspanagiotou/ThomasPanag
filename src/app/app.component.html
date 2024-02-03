@@ -13,10 +13,10 @@
               [(ngModel)]="timi_polisis"
               (ngModelChange)="recalculate()"
               [step]="0.01"
-              inputId="minmaxfraction"
+              inputId="timi_polisis"
               mode="decimal"
-              [minFractionDigits]="0"
-              [maxFractionDigits]="3"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
             ></p-inputNumber>
           </div>
         </div>
@@ -39,10 +39,10 @@
               [(ngModel)]="timi_agoras"
               (ngModelChange)="recalculate()"
               [step]="0.01"
-              inputId="minmaxfraction"
+              inputId="timi_agoras"
               mode="decimal"
-              [minFractionDigits]="0"
-              [maxFractionDigits]="3"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
             ></p-inputNumber>
           </div>
         </div>
@@ -75,10 +75,10 @@
               (ngModelChange)="recalculate()"
               [step]="0.01"
               suffix=" %"
-              inputId="minmaxfraction"
+              inputId="promitheia"
               mode="decimal"
-              [minFractionDigits]="0"
-              [maxFractionDigits]="3"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
               [showButtons]="true"
               buttonLayout="horizontal"
               spinnerMode="horizontal"
@@ -103,12 +103,11 @@
             <p-inputNumber
               [(ngModel)]="optimizer"
               (ngModelChange)="recalculateOptimizer()"
-              [step]="0.01"
-              inputId="minmaxfraction"
+              inputId="optimizer"
               mode="decimal"
               suffix=" %"
-              [minFractionDigits]="0"
-              [maxFractionDigits]="3"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
               [step]="0.01"
               [showButtons]="true"
               buttonLayout="horizontal"
@@ -158,9 +157,9 @@
               (ngModelChange)="recalculateKerdosApodosis()"
               [step]="0.01"
               suffix=" %"
-              inputId="minmaxfraction"
+              inputId="nea_kerdos_apodosis"
               mode="decimal"
-              [minFractionDigits]="0"
+              [minFractionDigits]="3"
               [maxFractionDigits]="3"
             ></p-inputNumber>
           </div>
