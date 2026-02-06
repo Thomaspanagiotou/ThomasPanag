@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   timi_agoras = 3.68;
   kerdos_polisis = 0;
   kerdos_apodosis = 0;
-  promitheia = 9.05;
+  promitheia = 12.40;
   optimizer = 0;
   nea_timi_polisis = 0;
   nea_timi_apodosis = 0;
