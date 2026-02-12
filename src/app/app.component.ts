@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
+import { PrimeNGConfig } from 'primeng/api';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,9 +7,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
+
+    constructor(private primengConfig: PrimeNGConfig) {}  // Πρόσθεσε αυτό
+
   timi_polisis = 5.33;
   timi_apodosis = 0;
   timi_agoras = 3.68;
+  kostos_diaxeirisis = 0;
   kerdos_polisis = 0;
   kerdos_apodosis = 0;
   promitheia = 12.40;
@@ -27,7 +31,8 @@ export class AppComponent implements OnInit {
   recalculate() {
     const promitheia = this.promitheia / 100;
     const optimizer = this.optimizer / 100;
-    this.timi_apodosis = this.timi_polisis - this.timi_polisis * promitheia;
+
+    this.timi_apodosis = this.timi_polisis - this.timi_polisis * promitheia - this.kostos_diaxeirisis;
 
     this.kerdos_polisis =
       (this.timi_polisis - this.timi_agoras) / this.timi_agoras;
@@ -38,7 +43,8 @@ export class AppComponent implements OnInit {
     this.nea_timi_polisis = this.timi_polisis - optimizer * this.timi_polisis;
 
     this.nea_timi_apodosis =
-      this.nea_timi_polisis - this.nea_timi_polisis * promitheia;
+      this.nea_timi_polisis - this.nea_timi_polisis * promitheia - this.kostos_diaxeirisis;
+      
 
     this.neo_kerdos_polisis =
       (this.nea_timi_polisis - this.timi_agoras) / this.timi_agoras;
@@ -51,6 +57,7 @@ export class AppComponent implements OnInit {
     this.neo_kerdos_apodosis =
       ((this.nea_timi_polisis -
         this.nea_timi_polisis * promitheia -
+        this.kostos_diaxeirisis -
         this.timi_agoras) /
         this.timi_agoras) *
       100;
@@ -62,7 +69,7 @@ export class AppComponent implements OnInit {
     const promitheia = this.promitheia / 100;
     this.optimizer =
       (1 -
-        (this.timi_agoras * (1 + neo_kerdos_apodosis)) /
+        (this.timi_agoras * (1 + neo_kerdos_apodosis) + this.kostos_diaxeirisis) /
           (this.timi_polisis * (1 - promitheia))) *
       100;
   }

@@ -38,4 +38,17 @@ h4 {
 
 .p-inputtext {
   font-size: 1.5em !important;
+
+}
+
+// Wrapper για δύο πεδία δίπλα-δίπλα
+.input-row {
+  display: flex;
+  gap: 10px; // Απόσταση μεταξύ τους
+  margin-bottom: 20px;
+  
+  .input-group {
+    flex: 1; // Ίσο πλάτος και για τα δύο
+    margin-bottom: 0; // Αφαίρεσε το κάτω margin
+  }
 }

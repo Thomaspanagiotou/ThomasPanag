@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

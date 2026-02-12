@@ -3,7 +3,7 @@
   style="padding: 3em; font-size: 1.5em !important"
 >
   <!-- First Column -->
-  <div class="column is-one-quarter">
+  <div class="column is-narrow">
     <div class="box custom-box">
       <div class="input-group">
         <div class="label-value">
@@ -30,7 +30,8 @@
           </div>
         </div>
       </div>
-
+      
+    <div class="input-row">
       <div class="input-group">
         <div class="label-value">
           <label for="timi_agoras">Τιμή Αγοράς</label>
@@ -47,6 +48,25 @@
           </div>
         </div>
       </div>
+
+      <div class="input-group">
+        <div class="label-value">
+          <label for="kostos_diaxeirisis">Κόστος Διαχείρισης</label>
+          <div class="input-control">
+            <p-inputNumber
+              [(ngModel)]="kostos_diaxeirisis"
+              (ngModelChange)="recalculate()"
+              [step]="0.01"
+              inputId="minmaxfraction"
+              mode="decimal"
+              [minFractionDigits]="0"
+              [maxFractionDigits]="3"
+            ></p-inputNumber>
+          </div>
+        </div>
+      </div>
+    </div>  
+      <div></div>
 
       <div class="input-group">
         <div class="label-value">
@@ -68,13 +88,12 @@
 
       <div class="input-group">
         <div class="label-value">
-          <label for="promitheia">Προμήθεια</label>
+          <label for="promitheia">Προμήθεια (%)</label>
           <div class="input-control">
             <p-inputNumber
               [(ngModel)]="promitheia"
               (ngModelChange)="recalculate()"
               [step]="0.01"
-              suffix=" %"
               inputId="minmaxfraction"
               mode="decimal"
               [minFractionDigits]="0"
@@ -86,6 +105,8 @@
               incrementButtonClass="p-button-success"
               incrementButtonIcon="pi pi-plus"
               decrementButtonIcon="pi pi-minus"
+              [useGrouping]="false"
+              [locale]="'el-GR'"
             ></p-inputNumber>
           </div>
         </div>
@@ -94,11 +115,11 @@
   </div>
 
   <!-- Second Column -->
-  <div class="column is-one-quarter">
+  <div class="column is-narrow">
     <div class="box custom-box">
       <div class="input-group">
         <div class="label-value">
-          <label for="optimizer">Optimizer</label>
+          <label for="optimizer">Optimizer %</label>
           <div class="input-control">
             <p-inputNumber
               [(ngModel)]="optimizer"
@@ -106,7 +127,7 @@
               [step]="0.01"
               inputId="minmaxfraction"
               mode="decimal"
-              suffix=" %"
+              
               [minFractionDigits]="0"
               [maxFractionDigits]="3"
               [step]="0.01"
@@ -151,13 +172,13 @@
 
       <div class="input-group">
         <div class="label-value">
-          <label for="neo_kerdos_apodosis">Νέο Κέρδος Απόδοσης</label>
+          <label for="neo_kerdos_apodosis">Νέο Κέρδος Απόδοσης %</label>
           <div class="input-control">
             <p-inputNumber
               [(ngModel)]="neo_kerdos_apodosis"
               (ngModelChange)="recalculateKerdosApodosis()"
               [step]="0.01"
-              suffix=" %"
+              
               inputId="minmaxfraction"
               mode="decimal"
               [minFractionDigits]="0"
