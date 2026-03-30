@@ -11,8 +11,17 @@ export class AppComponent implements OnInit {
     constructor(private primengConfig: PrimeNGConfig) {}  // Πρόσθεσε αυτό
 
   timi_polisis = 5.33;
+  posotita = 1;
   timi_apodosis = 0;
   timi_agoras = 3.68;
+  timi_agoras_me_fpa = 0;
+  fpa = 24;
+  fpaOptions = [
+    { label: '6%', value: 6 },
+    { label: '13%', value: 13 },
+    { label: '24%', value: 24 }
+  ];
+
   kostos_diaxeirisis = 0;
   kerdos_polisis = 0;
   kerdos_apodosis = 0;
@@ -31,35 +40,40 @@ export class AppComponent implements OnInit {
   recalculate() {
     const promitheia = this.promitheia / 100;
     const optimizer = this.optimizer / 100;
+    const synoliki_timi_polisis = this.timi_polisis * this.posotita;
+    const synoliki_timi_agoras = this.timi_agoras_me_fpa * this.posotita;
 
-    this.timi_apodosis = this.timi_polisis - this.timi_polisis * promitheia - this.kostos_diaxeirisis;
+    this.timi_agoras_me_fpa  = this.timi_agoras + (this.timi_agoras * this.fpa) / 100;
+
+    this.timi_apodosis = synoliki_timi_polisis - synoliki_timi_polisis * promitheia - this.kostos_diaxeirisis;
 
     this.kerdos_polisis =
-      (this.timi_polisis - this.timi_agoras) / this.timi_agoras;
+      (synoliki_timi_polisis - synoliki_timi_agoras) / synoliki_timi_agoras;
 
     this.kerdos_apodosis =
-      (this.timi_apodosis - this.timi_agoras) / this.timi_agoras;
+      (this.timi_apodosis - synoliki_timi_agoras) / synoliki_timi_agoras;
 
-    this.nea_timi_polisis = this.timi_polisis - optimizer * this.timi_polisis;
+    this.nea_timi_polisis = synoliki_timi_polisis - optimizer * synoliki_timi_polisis;
 
     this.nea_timi_apodosis =
       this.nea_timi_polisis - this.nea_timi_polisis * promitheia - this.kostos_diaxeirisis;
       
 
     this.neo_kerdos_polisis =
-      (this.nea_timi_polisis - this.timi_agoras) / this.timi_agoras;
+      (this.nea_timi_polisis - synoliki_timi_agoras) / synoliki_timi_agoras;
   }
 
   recalculateOptimizer() {
     this.recalculate();
     const promitheia = this.promitheia / 100;
+    const synoliki_timi_agoras = this.timi_agoras_me_fpa * this.posotita;
 
     this.neo_kerdos_apodosis =
       ((this.nea_timi_polisis -
         this.nea_timi_polisis * promitheia -
         this.kostos_diaxeirisis -
-        this.timi_agoras) /
-        this.timi_agoras) *
+        synoliki_timi_agoras) /
+        synoliki_timi_agoras) *
       100;
   }
 
@@ -67,10 +81,13 @@ export class AppComponent implements OnInit {
     this.recalculate();
     const neo_kerdos_apodosis = this.neo_kerdos_apodosis / 100;
     const promitheia = this.promitheia / 100;
+    const synoliki_timi_polisis = this.timi_polisis * this.posotita;
+    const synoliki_timi_agoras = this.timi_agoras_me_fpa * this.posotita;
+
     this.optimizer =
       (1 -
-        (this.timi_agoras * (1 + neo_kerdos_apodosis) + this.kostos_diaxeirisis) /
-          (this.timi_polisis * (1 - promitheia))) *
+        (synoliki_timi_agoras * (1 + neo_kerdos_apodosis) + this.kostos_diaxeirisis) /
+          (synoliki_timi_polisis * (1 - promitheia))) *
       100;
   }
 }

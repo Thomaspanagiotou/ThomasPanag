@@ -26,10 +26,19 @@ label {
 .input-control,
 .output-control {
   margin-top: 5px;
+  width: 100%;
 }
 
 p-inputNumber {
   width: 100%;
+  
+  .p-inputnumber {
+    width: 100%;
+    
+    input {
+      width: 100%;
+    }
+  }
 }
 
 h4 {
@@ -51,4 +60,5 @@ h4 {
     flex: 1; // Ίσο πλάτος και για τα δύο
     margin-bottom: 0; // Αφαίρεσε το κάτω margin
   }
+  
 }

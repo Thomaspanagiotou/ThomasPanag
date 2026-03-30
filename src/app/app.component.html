@@ -3,93 +3,148 @@
   style="padding: 3em; font-size: 1.5em !important"
 >
   <!-- First Column -->
-  <div class="column is-narrow">
+  <div class="column is-6">
     <div class="box custom-box">
-      <div class="input-group">
-        <div class="label-value">
-          <label for="timi_polisis">Τιμή Πώλησης</label>
-          <div class="input-control">
-            <p-inputNumber
-              [(ngModel)]="timi_polisis"
-              (ngModelChange)="recalculate()"
-              [step]="0.01"
-              inputId="minmaxfraction"
-              mode="decimal"
-              [minFractionDigits]="0"
-              [maxFractionDigits]="3"
-            ></p-inputNumber>
+      <!-- First row -->
+      <div class="input-row">
+        <div class="input-group">
+          <div class="label-value">
+            <label for="timi_polisis">Τιμή Πώλησης</label>
+            <div class="input-control" style="width:150px">
+              <p-inputNumber
+                [(ngModel)]="timi_polisis"
+                (ngModelChange)="recalculate()"
+                [step]="0.01"
+                inputId="minmaxfraction"
+                mode="decimal"
+                [minFractionDigits]="0"
+                [maxFractionDigits]="3"
+              ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label-value">
+            <label for="posotita">Ποσότητα</label>
+            <div class="input-control" style="width:150px">
+              <p-inputNumber
+                [(ngModel)]="posotita"
+                (ngModelChange)="recalculate()"
+                [step]="1"
+                inputId="minmaxfraction"
+                mode="decimal"
+                [minFractionDigits]="0"
+                [maxFractionDigits]="0"
+              ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label-value">
+            <label for="fpa">ΦΠΑ(%)</label>
+            <div class="input-control">
+              <p-dropdown
+                [(ngModel)]="fpa"
+                (ngModelChange)="recalculate()"
+                [options]="fpaOptions"
+                inputId="fpa"
+                optionLabel="label"
+                optionValue="value"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- Second row -->
+      <div class="input-row">
+        <div class="input-group">
+          <div class="label-value">
+            <label for="timi_agoras">Τιμή Αγοράς χωρίς ΦΠΑ</label>
+            <div class="input-control">
+              <p-inputNumber
+                [(ngModel)]="timi_agoras"
+                (ngModelChange)="recalculate()"
+                [step]="0.01"
+                inputId="minmaxfraction"
+                mode="decimal"
+                [minFractionDigits]="0"
+                [maxFractionDigits]="3"
+              ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="input-group">
+          <div class="label-value">
+            <label for="timi_agoras_me_fpa">Τιμή Αγοράς με ΦΠΑ</label>
+            <div class="output-control" >
+              <h4>{{ timi_agoras_me_fpa.toFixed(3) }}</h4>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="input-group">
-        <div class="label-value">
-          <label for="timi_apodosis">Τιμή Απόδοσης</label>
-          <div class="output-control">
-            <h4>{{ timi_apodosis.toFixed(3) }}</h4>
+      <!-- Third row -->
+      <div class="input-row">
+        <div class="input-group">
+          <div class="label-value">
+            <label for="kostos_diaxeirisis">Κόστος Διαχείρισης</label>
+            <div class="input-control">
+              <p-inputNumber
+                [(ngModel)]="kostos_diaxeirisis"
+                (ngModelChange)="recalculate()"
+                [step]="0.01"
+                inputId="minmaxfraction"
+                mode="decimal"
+                [minFractionDigits]="0"
+                [maxFractionDigits]="3"
+              ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label-value">
+            <label for="timi_apodosis">Τιμή Απόδοσης</label>
+            <div class="output-control">
+              <h4>{{ timi_apodosis.toFixed(3) }}</h4>
+            </div>
           </div>
         </div>
       </div>
       
-    <div class="input-row">
-      <div class="input-group">
-        <div class="label-value">
-          <label for="timi_agoras">Τιμή Αγοράς</label>
-          <div class="input-control">
-            <p-inputNumber
-              [(ngModel)]="timi_agoras"
-              (ngModelChange)="recalculate()"
-              [step]="0.01"
-              inputId="minmaxfraction"
-              mode="decimal"
-              [minFractionDigits]="0"
-              [maxFractionDigits]="3"
-            ></p-inputNumber>
-          </div>
-        </div>
-      </div>
 
-      <div class="input-group">
-        <div class="label-value">
-          <label for="kostos_diaxeirisis">Κόστος Διαχείρισης</label>
-          <div class="input-control">
-            <p-inputNumber
-              [(ngModel)]="kostos_diaxeirisis"
-              (ngModelChange)="recalculate()"
-              [step]="0.01"
-              inputId="minmaxfraction"
-              mode="decimal"
-              [minFractionDigits]="0"
-              [maxFractionDigits]="3"
-            ></p-inputNumber>
-          </div>
-        </div>
-      </div>
-    </div>  
-      <div></div>
-
+      <!-- Fourth row -->
+      <div class="input-row">
       <div class="input-group">
         <div class="label-value">
           <label for="kerdos_polisis">Κέρδος Πώλησης</label>
           <div class="output-control">
-            <h4>{{ kerdos_polisis | percent : "2.2-3" }}</h4>
+            <h4>{{ kerdos_polisis | percent: "2.2-3" }}</h4>
           </div>
         </div>
       </div>
 
+      <!-- Fifth row -->
       <div class="input-group">
         <div class="label-value">
           <label for="kerdos_apodosis">Κέρδος Απόδοσης</label>
           <div class="output-control">
-            <h4>{{ kerdos_apodosis | percent : "2.2-3" }}</h4>
+            <h4>{{ kerdos_apodosis | percent: "2.2-3" }}</h4>
           </div>
         </div>
       </div>
-
+      </div>
+      <!-- Sixth row -->
       <div class="input-group">
         <div class="label-value">
           <label for="promitheia">Προμήθεια (%)</label>
-          <div class="input-control">
+          <div class="input-control" style="width: 200px">
             <p-inputNumber
               [(ngModel)]="promitheia"
               (ngModelChange)="recalculate()"
@@ -127,7 +182,6 @@
               [step]="0.01"
               inputId="minmaxfraction"
               mode="decimal"
-              
               [minFractionDigits]="0"
               [maxFractionDigits]="3"
               [step]="0.01"
@@ -165,7 +219,7 @@
         <div class="label-value">
           <label for="neo_kerdos_polisis">Νέο Κέρδος Πώλησης</label>
           <div class="output-control">
-            <h4>{{ neo_kerdos_polisis | percent : "2.2-3" }}</h4>
+            <h4>{{ neo_kerdos_polisis | percent: "2.2-3" }}</h4>
           </div>
         </div>
       </div>
@@ -178,7 +232,6 @@
               [(ngModel)]="neo_kerdos_apodosis"
               (ngModelChange)="recalculateKerdosApodosis()"
               [step]="0.01"
-              
               inputId="minmaxfraction"
               mode="decimal"
               [minFractionDigits]="0"
